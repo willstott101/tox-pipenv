@@ -1,6 +1,7 @@
 import sys
 import os
 import tox
+import shutil
 from tox import hookimpl
 from tox import reporter
 from tox.venv import cleanup_for_venv
@@ -34,7 +35,7 @@ def _clone_pipfile(venv):
             os.utime(str(root_pipfile_path), None)
 
     if not venv_pipfile_path.check():
-        root_pipfile_path = copy(venv_pipfile_path)
+        shutil.copy(root_pipfile_path, venv_pipfile_path)
     return venv_pipfile_path
 
 
